@@ -1,0 +1,7 @@
+Werkzeug==1.0.1
+Flask==1.1.2
+numpy==1.18.5
+tf_nightly==2.5.0.dev20210104
+Keras==2.4.3
+tensorflow==2.4.1
+gunicorn>=19.9.0
