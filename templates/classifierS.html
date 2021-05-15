@@ -9,11 +9,11 @@
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link href="{{ url_for('static', filename='css/styles123.css') }}" rel="stylesheet">      
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">      
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Fetal Ultrasound Crown to Rump Length Image Classification Tool</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span></span>
@@ -43,7 +43,7 @@
     <div class="col">
       <div class="collapse multi-collapse" id="multiCollapseExample1">
         <div class="card card-body">
-          Ultrasounds are very important. The image standard can be seen on the right for non segmented click on the tab at the top of the page.
+          Fetal ultrasounds are very important. The image standard can be seen on the right for segmented images. Click on the tab at the top of the page.
           The Fetal ultrasound image classifier uses a ResNet50 Architecture and has shown sucessful results in the classification of correct and incorrect images.
           Please note only jpg, jpeg and png formats are acceptable for this program. 
         </div>
