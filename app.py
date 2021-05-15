@@ -31,25 +31,25 @@ print('Model loaded. Check http://127.0.0.1:5000/ or http://localhost:5000/')
 def predict_model(file_path, model):
     image_chosen = image.load_img(file_path, target_size=(224, 224))
 
-
     # Preprocessing the image
     image_x = image.img_to_array(image_chosen)
-    # x = np.true_divide(x, 255)
     image_x = np.expand_dims(image_x, axis=0)
-
+    #use resent preprocessing method
     image_x = tf.keras.applications.resnet.preprocess_input(image_x, data_format=None)
 
     preds = model.predict(image_x)
     return preds
 
 def predict_model2(file_path, model):
+    #load image
     image_chosen = image.load_img(file_path, target_size=(224, 224))
     # Preprocessing the image
     image_x = image.img_to_array(image_chosen)
     # x = np.true_divide(x, 255)
     image_x = np.expand_dims(image_x, axis=0)
-    
+    #use loaded model to predict image
     preds = resnetNSmodel.predict(image_x)
+    #return logit value stored in preds
 
     return preds
 
@@ -66,19 +66,19 @@ def upload():
         # Get the file from post request
         file_x = request.files['file']
 
-        # Save the file to ./uploads
+        # Save the file to the uploads folder 
         basepath = os.path.dirname(__file__)
         file_path = os.path.join(
             basepath, 'uploads', secure_filename(file_x.filename))
         file_x.save(file_path)
         # Make prediction
         preds = predict_model(file_path, model)
-
+        #convert logit value using sigmoid function
         preds = tf.nn.sigmoid(preds)
-        #pred = tf.where(pred < 0.5, 0, 1)
         print(preds)
-        print("this is model1")
-        
+
+        #compare value of prediction if greater the 0.5 then image is correct
+    
         if preds[0][0] >0.5:
             result = 'This image is correct to calculate an accurate CRL.'
         else:
@@ -86,8 +86,6 @@ def upload():
 
         return result
     return None
-
-
 
 
 @app.route('/NonSeg', methods=['GET'])
@@ -124,7 +122,4 @@ def uploadNS():
 
 if __name__ == '__main__':
     app.run(port=5002, debug=True)
-    #Serve the app with gevent
-    #http_server = WSGIServer(('localhost', 5000), app)
-    #http_server.serve_forever()
     app.run()
